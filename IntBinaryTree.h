@@ -5,8 +5,7 @@
 #include <iostream>
 #include <string>
 
-class StringBinaryTree; // Forward declaration
-{
+class StringBinaryTree { // Forward declaration
    private:
       struct TreeNode {
          std::string value;
@@ -16,14 +15,20 @@ class StringBinaryTree; // Forward declaration
 
       TreeNode *root;
 
-      void insert(TreeNode *&, TreeNode *&);
-      void destroySubTree(TreeNode *);
-      void deleteNode(const std::string &, TreeNode *&);
-      void makeDeletion(TreeNode *&);
-      void displayInOrder(TreeNode *) const;
-      void displayPreOrder(TreeNode *) const;
-      void displayPostOrder(TreeNode *) const;
-}
+      void insert(TreeNode *&nodePtr, TreeNode *&newNode) {
+        if (!nodePtr) {
+            nodePtr = newNode;
+        } else if (newNode->value < nodePtr->value) {
+            insert(nodePtr->left, newNode);
+        } else if (newNode->value > nodePtr->value) {
+            insert(nodePtr->right, newNode);
+        } else {
+            // Duplicate - do not insert. Caller created newNode, clean up.
+            delete newNode;
+            newNode = nullptr;
+        }
+    }
+};
 
 // The IntBinaryTree class manages a binary tree of integers.
 class IntBinaryTree {
