@@ -2,9 +2,31 @@
 #ifndef INTBINARYTREE_H
 #define INTBINARYTREE_H
 
+#include <iostream>
+#include <string>
+
+class StringBinaryTree; // Forward declaration
+{
+   private:
+      struct TreeNode {
+         std::string value;
+         TreeNode *left;
+         TreeNode *right;
+      };
+
+      TreeNode *root;
+
+      void insert(TreeNode *&, TreeNode *&);
+      void destroySubTree(TreeNode *);
+      void deleteNode(const std::string &, TreeNode *&);
+      void makeDeletion(TreeNode *&);
+      void displayInOrder(TreeNode *) const;
+      void displayPreOrder(TreeNode *) const;
+      void displayPostOrder(TreeNode *) const;
+}
+
 // The IntBinaryTree class manages a binary tree of integers.
 class IntBinaryTree {
-private:
    // TreeNode is a private structure for IntBinaryTree nodes.
    struct TreeNode {
       int value;         // The value in the node
