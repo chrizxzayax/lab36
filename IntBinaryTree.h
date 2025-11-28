@@ -28,6 +28,35 @@ class StringBinaryTree { // Forward declaration
             newNode = nullptr;
         }
     }
+    
+    bool search(TreeNode *nodePtr, const std::string &val) const {
+        while (nodePtr) {
+            if (nodePtr->value == val)
+                return true;
+            else if (val < nodePtr->value)
+                nodePtr = nodePtr->left;
+            else
+                nodePtr = nodePtr->right;
+        }
+        return false;
+    }
+
+    void destroySubTree(TreeNode *nodePtr) {
+        if (nodePtr) {
+            if (nodePtr->left)
+                destroySubTree(nodePtr->left);
+            if (nodePtr->right)
+                destroySubTree(nodePtr->right);
+            delete nodePtr;
+        }
+    }
+
+
+
+    public:
+    StringBinaryTree() : root(nullptr) {}
+      ~StringBinaryTree() { destroySubTree(root); }
+
 };
 
 // The IntBinaryTree class manages a binary tree of integers.

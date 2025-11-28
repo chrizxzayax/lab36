@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void LoadFromFile(const string &filename, StringBinaryTree &tree) {
+void LoadFromFile(const string &filename, StringBinaryTree &tree) {// Load strings from a file into the binary tree
     ifstream fin(filename);
     if (!fin) {
         cerr << "Could not open " << filename << " for reading.\n";
@@ -32,4 +32,25 @@ void LoadFromFile(const string &filename, StringBinaryTree &tree) {
     }
     cout << "Loaded " << inserted << " codes from " << filename << ".\n";
     fin.close();
+}
+
+int main(){
+    StringBinaryTree tree;
+    const string filename = "codes.txt";
+    cout << "Loading codes from " << filename << "...\n";
+    LoadFromFile(filename, tree);
+
+
+    while (true) {
+        cout << "Enter a code to search (or 'exit' to quit): ";
+        string code;
+        getline(cin, code);
+        if (code == "exit") break;
+
+        if (tree.searchNode(code)) {
+            cout << "Code '" << code << "' found in the tree.\n";
+        } else {
+            cout << "Code '" << code << "' NOT found in the tree.\n";
+        }
+    }
 }
