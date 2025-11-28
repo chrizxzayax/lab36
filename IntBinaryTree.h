@@ -59,45 +59,6 @@ class StringBinaryTree { // Forward declaration
 
 };
 
-// The IntBinaryTree class manages a binary tree of integers.
-class IntBinaryTree {
-   // TreeNode is a private structure for IntBinaryTree nodes.
-   struct TreeNode {
-      int value;         // The value in the node
-      TreeNode *left;    // Pointer to left child node
-      TreeNode *right;   // Pointer to right child node
-   };
-
-   // root points to the topmost node of the tree.
-   TreeNode *root;      
-
-   // Private member functions for internal operations.
-   void insert(TreeNode *&, TreeNode *&);
-   void destroySubTree(TreeNode *);
-   void deleteNode(int, TreeNode *&);
-   void makeDeletion(TreeNode *&);
-   void displayInOrder(TreeNode *) const;
-   void displayPreOrder(TreeNode *) const;
-   void displayPostOrder(TreeNode *) const;
-
-public:
-   // Constructor initializes the root to nullptr, indicating an empty tree.
-   IntBinaryTree()     { root = nullptr; }
-
-   // Destructor deallocates all nodes in the tree.
-   ~IntBinaryTree()    { destroySubTree(root); }
-
-   // Public interface for inserting, searching, and removing nodes.
-   void insertNode(int);
-   bool searchNode(int);
-   void remove(int);
-
-   // Public wrappers for tree traversal functions.
-   void displayInOrder() const     {  displayInOrder(root); }
-   void displayPreOrder() const    {  displayPreOrder(root); }
-   void displayPostOrder() const   {  displayPostOrder(root); }
-};
-
 // Implementation file for the IntBinaryTree class
 #include <iostream>
 #include "IntBinaryTree.h"
@@ -127,36 +88,6 @@ void IntBinaryTree::insertNode(int num) {
    
    // Insert the node.
    insert(root, newNode);
-}
-
-// destroySubTree is called by the destructor. It
-// deletes all nodes in the tree.                
-void IntBinaryTree::destroySubTree(TreeNode *nodePtr) {
-   if (nodePtr) {
-      if (nodePtr->left)
-         destroySubTree(nodePtr->left);
-      if (nodePtr->right)
-         destroySubTree(nodePtr->right);
-      delete nodePtr;
-   }
-}
-   
-
-// searchNode determines if a value is present in  
-// the tree. If so, the function returns true.     
-// Otherwise, it returns false.                    
-bool IntBinaryTree::searchNode(int num) {
-   TreeNode *nodePtr = root;
-
-   while (nodePtr)    {
-      if (nodePtr->value == num)
-         return true;
-      else if (num < nodePtr->value)
-         nodePtr = nodePtr->left;
-      else
-         nodePtr = nodePtr->right;
-   }
-   return false;
 }
 
 // remove calls deleteNode to delete the      
