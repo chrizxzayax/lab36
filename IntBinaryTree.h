@@ -88,6 +88,29 @@ class StringBinaryTree { // Forward declaration
         }
     }
 
+    void displayPreOrder(TreeNode *nodePtr) const {
+        if (nodePtr) {
+            std::cout << nodePtr->value << '\n';
+            displayPreOrder(nodePtr->left);
+            displayPreOrder(nodePtr->right);
+        }
+    }
+
+    void displayPostOrder(TreeNode *nodePtr) const {
+        if (nodePtr) {
+            displayPostOrder(nodePtr->left);
+            displayPostOrder(nodePtr->right);
+            std::cout << nodePtr->value << '\n';
+        }
+    }
+
+    void displayInOrder(TreeNode *nodePtr) const {
+        if (nodePtr) {
+            displayInOrder(nodePtr->left);
+            std::cout << nodePtr->value << '\n';
+            displayInOrder(nodePtr->right);
+        }
+    }
 
 
     public:
@@ -103,7 +126,15 @@ class StringBinaryTree { // Forward declaration
       bool searchNode(const std::string &val) const {
         return search(root, val);
       }
+      
+      void remove(const std::string &val) {
+        deleteNode(val, root);
+      }
 
+      void displayInOrder() const { displayInOrder(root); }
+      void displayPreOrder() const { displayPreOrder(root); }
+      void displayPostOrder() const { displayPostOrder(root); }
+      
 };
 
 #endif // INTBINARYTREE_H
