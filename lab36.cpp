@@ -62,7 +62,7 @@ int main(){
             cout << "Invalid selection. Try again.\n";
             continue;
         }
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');// clear newline
 
         if (choice == 1) {
             cout << "\n---- Tree (in-order) ----\n";
@@ -92,7 +92,7 @@ int main(){
             } else {
                 cout << "Code not found: " << code << '\n';
             }
-        } else if (choice == 4) {
+        } else if (choice == 4) {// Search
             cout << "Enter code to search: ";
             string code;
             getline(cin, code);
@@ -126,7 +126,7 @@ int main(){
             cout << "Exiting.\n";
             break;
         } else {
-            cout << "Invalid choice. Try again.\n";
+            cout << "Invalid choice. Try again.\n";//just an extra validation
         }
     }
     return 0;
